@@ -10,7 +10,7 @@
 ### Introduction
 * Send emails via AWS SES
 * Fetch attachments locally. from an S3 Bucket or via HTTP
-* Supports both text and HTML emails
+* Supports both text/plain and text/html emails
 
 ### Example
 ```go
