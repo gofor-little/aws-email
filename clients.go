@@ -43,7 +43,7 @@ func Initialize(profile string, region string) error {
 		sess, err = session.NewSession()
 	}
 	if err != nil {
-		return xerror.New("failed to create session.Session", err)
+		return xerror.Wrap("failed to create session.Session", err)
 	}
 
 	SESClient = ses.New(sess)

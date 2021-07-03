@@ -52,7 +52,7 @@ func Send(ctx context.Context, data Data) (string, error) {
 		for _, a := range data.Attachments {
 			data, err := a.Load(ctx)
 			if err != nil {
-				return "", xerror.New("failed to load Attachment", err)
+				return "", xerror.Wrap("failed to load Attachment", err)
 			}
 			message.AttachReader(filepath.Base(a.Path), bytes.NewReader(data))
 		}
@@ -74,7 +74,7 @@ func Send(ctx context.Context, data Data) (string, error) {
 	var buf bytes.Buffer
 	_, err := message.WriteTo(&buf)
 	if err != nil {
-		return "", xerror.New("failed to write to buffer", err)
+		return "", xerror.Wrap("failed to write to buffer", err)
 	}
 
 	// Create and validate raw email input.
@@ -87,13 +87,13 @@ func Send(ctx context.Context, data Data) (string, error) {
 	}
 
 	if err := input.Validate(); err != nil {
-		return "", xerror.New("failed to validate ses.SendRawEmailInput", err)
+		return "", xerror.Wrap("failed to validate ses.SendRawEmailInput", err)
 	}
 
 	// Send email.
 	output, err := SESClient.SendRawEmailWithContext(ctx, input)
 	if err != nil {
-		return "", xerror.New("failed to send raw email", err)
+		return "", xerror.Wrap("failed to send raw email", err)
 	}
 
 	return *output.MessageId, nil

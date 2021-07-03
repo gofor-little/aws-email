@@ -39,7 +39,7 @@ func (a *Attachment) Load(ctx context.Context) ([]byte, error) {
 	case AttachmentTypeLocal:
 		data, err := os.ReadFile(a.Path)
 		if err != nil {
-			return nil, xerror.New("failed to read local file", err)
+			return nil, xerror.Wrap("failed to read local file", err)
 		}
 
 		return data, nil
@@ -56,19 +56,19 @@ func (a *Attachment) Load(ctx context.Context) ([]byte, error) {
 		}
 
 		if err := input.Validate(); err != nil {
-			return nil, xerror.New("failed to validate s3.GetObjectInput", err)
+			return nil, xerror.Wrap("failed to validate s3.GetObjectInput", err)
 		}
 
 		// Get the object from S3 and read it into a bytes.Buffer.
 		output, err := S3Client.GetObjectWithContext(ctx, input)
 		if err != nil {
-			return nil, xerror.New("failed to get object from S3", err)
+			return nil, xerror.Wrap("failed to get object from S3", err)
 		}
 
 		buffer := bytes.Buffer{}
 		_, err = buffer.ReadFrom(output.Body)
 		if err != nil {
-			return nil, xerror.New("failed to read s3.GetObjectOutput's body", err)
+			return nil, xerror.Wrap("failed to read s3.GetObjectOutput's body", err)
 		}
 
 		return buffer.Bytes(), nil
@@ -80,13 +80,13 @@ func (a *Attachment) Load(ctx context.Context) ([]byte, error) {
 		// Create new http.Request.
 		request, err := http.NewRequest(http.MethodGet, a.Path, nil)
 		if err != nil {
-			return nil, xerror.New("failed to create http.Request", err)
+			return nil, xerror.Wrap("failed to create http.Request", err)
 		}
 
 		// Get the Attachment data.
 		response, err := HTTPClient.Do(request)
 		if err != nil {
-			return nil, xerror.New("failed to do HTTP request on attachment", err)
+			return nil, xerror.Wrap("failed to do HTTP request on attachment", err)
 		}
 		defer func() {
 			_ = response.Body.Close()
@@ -94,7 +94,7 @@ func (a *Attachment) Load(ctx context.Context) ([]byte, error) {
 
 		data, err := io.ReadAll(response.Body)
 		if err != nil {
-			return nil, xerror.New("failed to read response body", err)
+			return nil, xerror.Wrap("failed to read response body", err)
 		}
 
 		return data, nil
