@@ -9,8 +9,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/gofor-little/xerror"
 )
 
@@ -50,17 +50,11 @@ func (a *Attachment) Load(ctx context.Context) ([]byte, error) {
 			return nil, xerror.Newf("invalid path for AttachmentTypeS3: %s, path must be in the following format <bucket>/<key>", a.Path)
 		}
 
-		input := &s3.GetObjectInput{
+		// Get the object from S3 and read it into a bytes.Buffer.
+		output, err := S3Client.GetObject(ctx, &s3.GetObjectInput{
 			Bucket: aws.String(parts[0]),
 			Key:    aws.String(a.Path[len(parts[0])+1:]),
-		}
-
-		if err := input.Validate(); err != nil {
-			return nil, xerror.Wrap("failed to validate s3.GetObjectInput", err)
-		}
-
-		// Get the object from S3 and read it into a bytes.Buffer.
-		output, err := S3Client.GetObjectWithContext(ctx, input)
+		})
 		if err != nil {
 			return nil, xerror.Wrap("failed to get object from S3", err)
 		}

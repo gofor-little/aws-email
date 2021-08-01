@@ -6,8 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/ses"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/ses"
+	"github.com/aws/aws-sdk-go-v2/service/ses/types"
 	"github.com/go-mail/mail"
 	"github.com/gofor-little/env"
 	"github.com/gofor-little/xerror"
@@ -77,21 +78,14 @@ func Send(ctx context.Context, data Data) (string, error) {
 		return "", xerror.Wrap("failed to write to buffer", err)
 	}
 
-	// Create and validate raw email input.
-	input := &ses.SendRawEmailInput{
-		Destinations: aws.StringSlice(destinations),
+	// Send email.
+	output, err := SESClient.SendRawEmail(ctx, &ses.SendRawEmailInput{
+		Destinations: destinations,
 		FromArn:      aws.String(env.Get("AWS_FROM_ARN", "")),
-		RawMessage: &ses.RawMessage{
+		RawMessage: &types.RawMessage{
 			Data: buf.Bytes(),
 		},
-	}
-
-	if err := input.Validate(); err != nil {
-		return "", xerror.Wrap("failed to validate ses.SendRawEmailInput", err)
-	}
-
-	// Send email.
-	output, err := SESClient.SendRawEmailWithContext(ctx, input)
+	})
 	if err != nil {
 		return "", xerror.Wrap("failed to send raw email", err)
 	}

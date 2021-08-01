@@ -1,22 +1,21 @@
 package email
 
 import (
+	"context"
+	"fmt"
 	"net/http"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
-	"github.com/aws/aws-sdk-go/service/ses"
-	"github.com/aws/aws-sdk-go/service/ses/sesiface"
-	"github.com/gofor-little/xerror"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/ses"
 )
 
 var (
 	// SESClient is used to send emails via SES.
-	SESClient sesiface.SESAPI
+	SESClient *ses.Client
 	// S3Client is used to fetch attachments from S3.
-	S3Client s3iface.S3API
+	S3Client *s3.Client
 	// HTTPClient is used to fetch attachments from the web.
 	HTTPClient httpClient
 )
@@ -28,26 +27,21 @@ type httpClient interface {
 // Initialize will initialize the sms package. Both the profile
 // and region parameters are optional if authentication can be achieved
 // via another method. For example, environment variables or IAM roles.
-func Initialize(profile string, region string) error {
-	var sess *session.Session
+func Initialize(ctx context.Context, profile string, region string) error {
+	var cfg aws.Config
 	var err error
 
 	if profile != "" && region != "" {
-		sess, err = session.NewSessionWithOptions(session.Options{
-			Config: aws.Config{
-				Region: aws.String(region),
-			},
-			Profile: profile,
-		})
+		cfg, err = config.LoadDefaultConfig(ctx, config.WithSharedConfigProfile(profile), config.WithRegion(region))
 	} else {
-		sess, err = session.NewSession()
+		cfg, err = config.LoadDefaultConfig(ctx)
 	}
 	if err != nil {
-		return xerror.Wrap("failed to create session.Session", err)
+		return fmt.Errorf("failed to load default config: %w", err)
 	}
 
-	SESClient = ses.New(sess)
-	S3Client = s3.New(sess)
+	SESClient = ses.NewFromConfig(cfg)
+	S3Client = s3.NewFromConfig(cfg)
 
 	return nil
 }
