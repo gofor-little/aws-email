@@ -24,7 +24,7 @@ type httpClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-// Initialize will initialize the sms package. Both the profile
+// Initialize will initialize the email package. Both the profile
 // and region parameters are optional if authentication can be achieved
 // via another method. For example, environment variables or IAM roles.
 func Initialize(ctx context.Context, profile string, region string) error {
