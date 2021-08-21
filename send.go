@@ -18,11 +18,11 @@ import (
 func Send(ctx context.Context, data Data) (string, error) {
 	// Check that the package clients have been initialized.
 	if SESClient == nil {
-		return "", xerror.Newf("SESClient is nil")
+		return "", xerror.New("SESClient is nil")
 	}
 
 	if S3Client == nil {
-		return "", xerror.Newf("S3Client is nil")
+		return "", xerror.New("S3Client is nil")
 	}
 
 	// Build the destination emails.
