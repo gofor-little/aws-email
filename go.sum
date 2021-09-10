@@ -30,8 +30,8 @@ github.com/go-mail/mail v2.3.1+incompatible h1:UzNOn0k5lpfVtO31cK3hn6I4VEVGhe3lX
 github.com/go-mail/mail v2.3.1+incompatible/go.mod h1:VPWjmmNyRsWXQZHVHT3g0YbIINUkSmuKOiLIDkWbL6M=
 github.com/gofor-little/env v1.0.1 h1:eyIs4TAz3N0oaNwFf0TFSRIuaHRDryLM5ccRZRuGYlw=
 github.com/gofor-little/env v1.0.1/go.mod h1:O9VC/sxOcJfu6DPWz6EUVULGJ6ufdy8QkfUZC7OVKQc=
-github.com/gofor-little/xerror v0.5.0 h1:VnbR/cM8Qw2Ahw/vNXJIU3IJ/lCDAH+ewh875FaxkUM=
-github.com/gofor-little/xerror v0.5.0/go.mod h1:STbmj77c00keIwdRTBGGoixSyfVqz/pukORfbElaWck=
+github.com/gofor-little/xerror v0.5.1 h1:DXYXByhA2ffvYCPrTGp3ffirbTYd3ITxZdhgY7bY3Wg=
+github.com/gofor-little/xerror v0.5.1/go.mod h1:STbmj77c00keIwdRTBGGoixSyfVqz/pukORfbElaWck=
 github.com/google/go-cmp v0.5.4/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.6 h1:BKbKCqvP6I+rmFHt06ZmyQtvB8xAkWdhFyr0ZUNZcxQ=
 github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
