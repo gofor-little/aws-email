@@ -9,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ses v1.6.0
 	github.com/go-mail/mail v2.3.1+incompatible
 	github.com/gofor-little/env v1.0.1
-	github.com/gofor-little/xerror v0.5.0
+	github.com/gofor-little/xerror v0.5.1
 	github.com/stretchr/testify v1.7.0
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/mail.v2 v2.3.1 // indirect
