@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.21.0
 	github.com/aws/aws-sdk-go-v2/service/ses v1.9.2
 	github.com/go-mail/mail v2.3.1+incompatible
-	github.com/gofor-little/env v1.0.2
+	github.com/gofor-little/env v1.0.3
 	github.com/gofor-little/xerror v1.0.0
 	github.com/stretchr/testify v1.7.0
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
