@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/aws/aws-sdk-go-v2 v1.13.0
 	github.com/aws/aws-sdk-go-v2/config v1.13.0
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.24.0
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.24.1
 	github.com/aws/aws-sdk-go-v2/service/ses v1.12.0
 	github.com/go-mail/mail v2.3.1+incompatible
 	github.com/gofor-little/env v1.0.3
