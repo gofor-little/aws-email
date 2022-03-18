@@ -10,7 +10,7 @@ require (
 	github.com/go-mail/mail v2.3.1+incompatible
 	github.com/gofor-little/env v1.0.3
 	github.com/gofor-little/xerror v1.0.0
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.7.1
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/mail.v2 v2.3.1 // indirect
 )
