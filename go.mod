@@ -3,10 +3,10 @@ module github.com/gofor-little/aws-email
 go 1.17
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.1
+	github.com/aws/aws-sdk-go-v2 v1.16.2
 	github.com/aws/aws-sdk-go-v2/config v1.15.2
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.26.2
-	github.com/aws/aws-sdk-go-v2/service/ses v1.14.2
+	github.com/aws/aws-sdk-go-v2/service/ses v1.14.3
 	github.com/go-mail/mail v2.3.1+incompatible
 	github.com/gofor-little/env v1.0.3
 	github.com/gofor-little/xerror v1.0.0
@@ -19,8 +19,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.1 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.11.1 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.12.2 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.8 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.2 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.9 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.3.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.9.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.1.2 // indirect
