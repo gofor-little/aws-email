@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go-v2 v1.16.4
 	github.com/aws/aws-sdk-go-v2/config v1.15.7
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.26.8
-	github.com/aws/aws-sdk-go-v2/service/ses v1.14.4
+	github.com/aws/aws-sdk-go-v2/service/ses v1.14.5
 	github.com/go-mail/mail v2.3.1+incompatible
 	github.com/gofor-little/env v1.0.3
 	github.com/gofor-little/xerror v1.0.0
