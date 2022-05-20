@@ -3,7 +3,7 @@ module github.com/gofor-little/aws-email
 go 1.17
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.3
+	github.com/aws/aws-sdk-go-v2 v1.16.4
 	github.com/aws/aws-sdk-go-v2/config v1.15.4
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.26.8
 	github.com/aws/aws-sdk-go-v2/service/ses v1.14.4
