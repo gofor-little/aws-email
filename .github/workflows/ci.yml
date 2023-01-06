@@ -17,6 +17,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
+      AWS_FROM_ARN: ${{ secrets.AWS_FROM_ARN }}
       TEST_EMAIL_FROM: ${{ secrets.TEST_EMAIL_FROM }}
       TEST_EMAIL_RECIPIENTS: ${{ secrets.TEST_EMAIL_RECIPIENTS }}
     steps:
