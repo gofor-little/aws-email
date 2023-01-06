@@ -9,18 +9,30 @@ on:
 permissions:
   contents: write
   id-token: write
-env:
-  TEST_EMAIL_FROM: ${{ secrets.TEST_EMAIL_FROM }}
-  TEST_EMAIL_RECIPIENTS: ${{ secrets.TEST_EMAIL_RECIPIENTS }}
 jobs:
   lint:
     name: Lint
     uses: gofor-little/github-actions/.github/workflows/golang-lint.yaml@main
   test:
     name: Test
-    uses: gofor-little/github-actions/.github/workflows/golang-test.yaml@main
-    with:
-      aws-role: arn:aws:iam::320045747480:role/github-actions
+    runs-on: ubuntu-latest
+    env:
+      TEST_EMAIL_FROM: ${{ secrets.TEST_EMAIL_FROM }}
+      TEST_EMAIL_RECIPIENTS: ${{ secrets.TEST_EMAIL_RECIPIENTS }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Golang
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ inputs.go-version }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ap-southeast-2
+          role-to-assume: arn:aws:iam::320045747480:role/github-actions
+      - name: Run Tests
+        run: go test ${{ inputs.test-args }}
   bump-tag:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs:
