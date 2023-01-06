@@ -26,7 +26,7 @@ func TestSend(t *testing.T) {
 
 		t.Run(name, func(t *testing.T) {
 			_, err := email.Send(context.Background(), tc.data)
-			require.Equal(t, tc.want, err, err.Error())
+			require.Equal(t, tc.want, err)
 		})
 	}
 }
